@@ -13,6 +13,9 @@ studentRouter.get('/editStudent',studentController.editStudent);
 studentRouter.put('/updateStudent',studentController.updateStudent);
 
 
+studentRouter.delete('/deleteStudent',studentController.deleteStudent);
+
+
 
 
 

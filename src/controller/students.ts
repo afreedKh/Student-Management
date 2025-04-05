@@ -6,7 +6,7 @@ export const getAllList = async (
   res: Response
 ): Promise<void> => {
   try {
-    const students = await StudentModel.find();
+    const students = await StudentModel.find({isDeleted:false});
     res.render("studentList", { students });
   } catch (error) {
     console.error("getAllList error", error);
@@ -137,3 +137,26 @@ export const updateStudent = async (
     res.status(500).send("updateStudent error");
   }
 };
+
+export const deleteStudent = async(req:Request,res:Response):Promise<void>=>{
+  try {
+    
+    const student = await StudentModel.findById(req.query.id)
+
+    
+    if(!student){
+      res.status(404).json({success:false})
+    }else{
+      await StudentModel.findByIdAndUpdate(req.query.id,{
+        $set:{
+          isDeleted:true
+        }
+      },{new:true})
+
+      res.json({success:true});
+    }
+  } catch (error) {
+    console.error('delete student error ',error);
+    res.status(500).send('delete student error')
+  }
+}

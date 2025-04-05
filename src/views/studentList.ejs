@@ -34,7 +34,7 @@
                     <td><%=students[i].course%></td>
                     <td class="actions">
                        <a href="/editStudent?id=<%=students[i]._id%>"> <button class="edit-btn">Edit</button></a>
-                       <a href="/deleteStudent?id=<%=students[i]._id%>"> <button class="delete-btn">Delete</button> </a>
+                       <button class="delete-btn" onclick="deleteStudent('<%=students[i]._id%>')">Delete</button> 
                     </td>
                 </tr>
                  <%}%>
@@ -71,6 +71,7 @@
             </form>
         </div>
     </div>
+    <script src="deleteStudentScript.js"></script>
 
     <script>
         // Modal handling
@@ -106,5 +107,7 @@
             // Add more student objects as needed
         ];
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

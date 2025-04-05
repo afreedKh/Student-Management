@@ -7,6 +7,7 @@ interface Students extends Document{
     email:string;
     phone:number;
     course:string;
+    isDeleted:boolean
 }
 
 const studentsSchema = new Schema<Students>({
@@ -31,6 +32,10 @@ const studentsSchema = new Schema<Students>({
     course:{
         type:String,
         required:true
+    },
+    isDeleted:{
+        type:Boolean,
+        default:false
     }
 })
 
