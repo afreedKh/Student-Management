@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Student</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </button>
+        
+        <div class="form-header">
+            <h1 class="form-title">
+                <i class="fas fa-user-graduate"></i>
+                Add New Student
+            </h1>
+        </div>
+
+        <form class="student-form" id="student-form">
+
+            <div class="form-group">
+                <label for="firstName">Student ID  </label>
+                <input type="number" id="studentId" name="studentId" value="<%=locals.stdID%>">
+                <span style="color: red;" id="error-Id" class="errorSpan"><%=locals.invalidId ? locals.invalidId : "" %></span>
+            </div>
+
+
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label for="firstName">Name</label>
+                <input type="text" id="studentName" name="studentName" value="<%=locals.studentName%>">
+                <span style="color: red;" id="error-name" class="errorSpan" ></span>
+            </div>
+
+          
+
+            <!-- Contact Information -->
+            <div class="form-group full-width">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="<%=locals.email%>">
+                <span style="color: red;" id="error-email" class="errorSpan"><%=locals.email? locals.email : "" %></span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" value="<%=locals.phone%>">
+                <span style="color: red;" id="error-phone" class="errorSpan"></span>
+            </div>
+
+       
+
+            <div class="form-group">
+                <label for="course">Select Course</label>
+                <i class="fas fa-book input-icon"></i>
+                <select id="course" name="course">
+                    <option value="<%=locals.course%>">Choose a course</option>
+                    <option>Computer Science</option>
+                    <option>Business Administration</option>
+                    <option>Electrical Engineering</option>
+                </select>
+                <span style="color: red;" id="error-course" class="errorSpan"></span>
+
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    <i class="fas fa-save"></i>
+                    Save Student
+                </button>
+            </div>
+        </form>
+    </div>
+    <script src="addStudentScript.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">     
+        <div class="header">
+            <h1>Students List</h1>
+           <a href="/addNewStudent"> <button class="add-btn" >Add Student</button> </a>
+        </div>
+
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <%for( i=students.length-1;i>=0;i--){%>
+                <tr>
+                    <td><%=students[i].studentId%></td>
+                    <td><%=students[i].name%></td>
+                    <td><%=students[i].email%></td>
+                    <td><%=students[i].phone%></td>
+                    <td><%=students[i].course%></td>
+                    <td class="actions">
+                       <a href="/editStudent?id=<%=students[i]._id%>"> <button class="edit-btn">Edit</button></a>
+                       <a href="/deleteStudent?id=<%=students[i]._id%>"> <button class="delete-btn">Delete</button> </a>
+                    </td>
+                </tr>
+                 <%}%>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Add Student Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>Add New Student</h2>
+            <form id="addStudentForm">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required><br><br>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required><br><br>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required><br><br>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" required><br><br>
+
+                <label for="address">Address:</label>
+                <textarea id="address" required></textarea><br><br>
+
+                <button type="submit">Save</button>
+                <button type="button" onclick="closeAddModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal handling
+      
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('addModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('addStudentForm').onsubmit = function(e) {
+            e.preventDefault();
+            // Add your form handling logic here
+            alert('Student added!');
+            closeAddModal();
+        }
+
+        // Sample data - You can replace this with actual data from a database
+        const students = [
+            {
+                id: 1,
+                firstName: "John",
+                lastName: "Doe",
+                dob: "2000-01-01",
+                email: "john@example.com",
+                phone: "555-1234",
+                address: "123 Main St"
+            }
+            // Add more student objects as needed
+        ];
+    </script>
+</body>
+</html>
